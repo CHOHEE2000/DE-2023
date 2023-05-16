@@ -46,7 +46,7 @@ public class UBERStudent20201037
 		
 	}
 
-	public static class UBEReducer extends Reducer<Text, Text, Text, Text>
+	public static class UBERReducer extends Reducer<Text, Text, Text, Text>
 	{
 		private Text result = new Text();
 		public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException
