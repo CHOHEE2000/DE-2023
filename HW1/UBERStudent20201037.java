@@ -54,7 +54,7 @@ public class UBERStudent20201037
 			int sumTrip = 0;
 			int sumVehicle = 0;
 			for (Text val : values) {
-				String[] arr = val.split(",");
+				String[] arr = val.toString().split(",");
 				sumTrip += Integer.parseInt(arr[0]);
 				sumVehicle += Integer.parseInt(arr[1]);
 			}
