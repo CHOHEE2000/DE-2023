@@ -26,8 +26,10 @@ public class UBERStudent20201037
 			
 			String region = itr.nextToken();
 			String date = itr.nextToken();
-			int vehicle = Integer.parseInt(itr.nextToken());
-			int trip = Integer.parseInt(itr.nextToken());
+			String vehicle = itr.nextToken();
+			String trip = itr.nextToken();
+			
+			String[] days = {"MON", "TUE", "WED", "THR", "FRI", "SAT", "SUN"};
 			
 			String[] arr = date.split("/");
 			int day = Integer.parseInt(arr[0]);
@@ -35,8 +37,8 @@ public class UBERStudent20201037
 			int year = Integer.parseInt(arr[2]);	
 			LocalDate d = LocalDate.of(year, month, day);
 			DayOfWeek dayofweek = d.getDayOfWeek();
-			date = dayofweek.getDisplayName(TextStyle.SHORT, Locale.US);
-			date = date.toUpperCase();
+			int datee = dayofweek.getValue();
+			date = days[datee-1];
 			
 			word1.set(region + "," + date);
 			word2.set(trip + "," + vehicle);
@@ -54,9 +56,10 @@ public class UBERStudent20201037
 			int sumTrip = 0;
 			int sumVehicle = 0;
 			for (Text val : values) {
-				String[] arr = val.toString().split(",");
-				sumTrip += Integer.parseInt(arr[0]);
-				sumVehicle += Integer.parseInt(arr[1]);
+				String arr = val.toString();
+				StringTokenizer itr = new StringTokenizer(arr, ",");
+				sumTrip += Integer.parseInt(itr.nextToken());
+				sumVehicle += Integer.parseInt(itr.nextToken());
 			}
 			result.set(sumTrip + "," + sumVehicle);
 			context.write(key, result);
