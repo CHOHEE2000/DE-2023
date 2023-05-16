@@ -13,9 +13,9 @@ import org.apache.hadoop.util.GenericOptionsParser;
 
 public class UBERStudent20201037
 {
-	public static class UBERMapper extends Mapper<Object, Text, Text, IntWritable>
+	public static class UBERMapper extends Mapper<Object, Text, Text, Text>
 	{
-		private final static IntWritable one = new IntWritable(1);
+
 		private Text word1 = new Text();
 		private Text word2 = new Text();
 
@@ -46,17 +46,19 @@ public class UBERStudent20201037
 		
 	}
 
-	public static class UBEReducer extends Reducer<Text, IntWritable, Text, IntWritable>
+	public static class UBEReducer extends Reducer<Text, Text, Text, Text>
 	{
-		private IntWritable result = new IntWritable();
-		public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException
+		private Text result = new Text();
+		public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException
 		{
-			int sum = 0;
-			for (IntWritable val : values)
-			{
-				sum += val.get();
+			int sumTrip = 0;
+			int sumVehicle = 0;
+			for (Text val : values) {
+				String[] arr = val.split(",");
+				sumTrip += Integer.parseInt(arr[0]);
+				sumVehicle += Integer.parseInt(arr[1]);
 			}
-			result.set(sum);
+			result.set(sumTrip + "," + sumVehicle);
 			context.write(key, result);
 		}
 	}
