@@ -77,8 +77,7 @@ public class UBERStudent20201037
 		job.setJarByClass(UBERStudent20201037.class);
 		job.setMapperClass(UBERMapper.class);
 		job.setCombinerClass(UBERReducer.class);
-		// MAP DEBUGING
-		//job.setNumReduceTasks(0);  
+		
 		job.setReducerClass(UBERReducer.class);
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
