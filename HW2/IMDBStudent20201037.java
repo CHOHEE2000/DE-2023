@@ -226,4 +226,5 @@ public class IMDBStudent20201037 {
         FileSystem.get(job.getConfiguration()).delete( new Path(otherArgs[1]), true);
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
+  }
 
